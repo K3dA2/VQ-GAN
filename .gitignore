@@ -167,3 +167,7 @@ val-waifu-vqvae_epoch-loss.txt
 waifu-vqvae_epoch.pth
 VGGPerceptionloss.py
 weights/
+eval/learning_rate_vs_validation_loss.png
+eval/lr_eval.py
+eval/gan_lr_eval.py
+eval.py
