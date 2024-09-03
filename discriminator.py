@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from module import Encoder, Decoder, ResNet
+from model.module import Encoder, Decoder, ResNet
 
 class Discriminator(nn.Module):
     def __init__(self, width=64, in_channels=3):
@@ -9,6 +9,13 @@ class Discriminator(nn.Module):
         self.net = nn.Sequential(
             nn.Conv2d(in_channels, width, kernel_size=3, padding=1),
             nn.ReLU(),
+            nn.MaxPool2d(2),
+            ResNet(width, width),
+            nn.ReLU(),
+            nn.MaxPool2d(2),
+            ResNet(width, width),
+            nn.ReLU(),
+            nn.MaxPool2d(2),
             nn.Conv2d(width, width * 2, kernel_size=3, stride=2,padding=1),
             nn.ReLU(),
             nn.Conv2d(width * 2, width * 3, kernel_size=3, stride = 2, padding=1),
